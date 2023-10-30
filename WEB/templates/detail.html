@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h2 class="fw-bolder mb-1">{{pdf.title}}</h2>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">{{pdf.author.username}} tarafından</div>
+                    <div class="text-muted fst-italic mb-2">{{pdf.created_date}} tarihinde yüklendi.</div>
+                    <hr>
+                </header>
+                <!-- Preview PDF-->
+                {% if pdf.pdf_file %}
+
+                <p>Belge yüklendi: <a href="/media/{{pdf.pdf_file }}">{{ pdf.pdf_file }}</a></p>
+                
+                {% endif %}
+
+
+                <!-- Post content-->
+                <hr>
+                <p class="lead">{{pdf.content|safe}}</p>
+                <hr>
+            </article>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

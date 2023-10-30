@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% load crispy_forms_tags %}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h3>Ödev Güncelle</h3>
+        <hr>
+        <h6>Not: İçerik kısmını lütfen boş bırakınız. Bu kısım, yüklediğiniz ödev PDF dosyasından otomatik olarak gerekli bilgilerle doldurulmaktadır.</h6>
+        <br>
+        <form method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form|crispy}}
+
+            <br>
+            <button type = "submit" class="btn btn-danger">Güncelle</button>
+            <br>
+            <br>
+        
+        </form>
+
+    </div>
+</div>
+
+{% endblock body %}

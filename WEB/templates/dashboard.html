@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Kontrol Paneli</h3>
+<hr>
+<p>
+    Hoşgeldiniz, <small>{{request.user.username}}</small>
+</p>
+<hr>
+
+
+<form>
+  {% csrf_token %} 
+  <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Ara...">
+  <button type="submit" class="btn btn-danger">Ara</button>
+</form>
+    
+
+<hr>Yeni ödev ekle:  
+<a class = "btn btn-success" href="/pdf/addpdf">PDF Ekle</a>
+<hr>
+
+{% if pdfs %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Başlık</th>
+        <th scope="col">Yazar</th>
+        <th scope="col">Tarih</th>
+        <th scope="col">Güncelle</th>
+        <th scope="col">Sil</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for pdf in pdfs %}
+
+        <tr>
+            <th scope="row">{{pdf.id}}</th>
+            <td><a href="/pdf/pdf/{{pdf.id}}">{{pdf.title}}</a></td>
+            <td>{{pdf.author.username}}</td>
+            <td>{{pdf.created_date}}</td>
+            <td><a href="/pdf/update/{{pdf.id}}" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/pdf/delete/{{pdf.id}}" class="btn btn-danger">Sil</a></td>
+        </tr>
+          
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+{% else %}
+<div class = "alert alert-danger">
+    Ödev bulunamadı!
+</div>
+{% endif %}
+
+{% endblock body %}

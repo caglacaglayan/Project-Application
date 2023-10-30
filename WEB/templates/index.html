@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div clas="jumbotron text-center">
+    <h1>Hoşgeldiniz !</h1>
+    <hr>
+</div>
+
+<p>
+    {% if request.user.is_authenticated %}
+        <h3>Merhaba {{request.user.username}}, öğrenci paneline hoşgeldin!</h3>
+        <br>
+        <h4>Ödev yüklemek ya da yüklediğin ödevleri görüntülemek için menünün sağ üst tarafından <u>Kontrol Paneline</u> erişebilirsin ;)</h4>
+        <br><br><br>
+        <h5>-> Çıkış yapmak için menünün sağ üst tarafından <u>Çıkış Yap</u> butonuna tıklayabilirsiniz.</h5>
+        
+    {% else %}
+        <h4>-> Ödev yüklemek için lütfen giriş yapın!</h4>
+        <br>
+    {% endif %}
+    <br>
+    <h5>-> <u>Yönetim Paneline</u> menünün sol üst tarafından erişebilirsiniz.</h5>
+
+</p>
+
+{% endblock body %}
